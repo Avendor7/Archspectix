@@ -98,9 +98,4 @@ th {
 tr:hover {
     background-color: #444444;
 }
-
-table th:first-child,
-table td:first-child {
-    border-left: none;
-}
 </style>
