@@ -5,11 +5,26 @@
         <input v-model="query" placeholder="Search" />
         <div v-if="isLoading">Loading...</div>
         <div v-else>
-            <ul>
-                <li v-for="result in data.results">
-                    {{ result.pkgname }}
-                </li>
-            </ul>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Source</th>
+                        <th>Name</th>
+                        <th>Version</th>
+                        <th>Data Type</th>
+                        <th>Last Updated Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="result in data" :key="result.name">
+                        <td>{{ result.source }}</td>
+                        <td>{{ result.name }}</td>
+                        <td>{{ result.version }}</td>
+                        <td>{{ result.datetype }}</td>
+                        <td>{{ result.last_updated_date }}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </main>
 </template>
@@ -26,7 +41,7 @@ const isLoading = ref(false);
 function fetchData() {
     isLoading.value = true;
     console.log(query.value);
-    let url = "http://localhost:3001/append?value=" + query.value;
+    let url = "http://localhost:3001/search?value=" + query.value;
     console.log(url);
     axios
         .get(url)
