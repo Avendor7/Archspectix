@@ -13,6 +13,7 @@
                         <th>Version</th>
                         <th>Data Type</th>
                         <th>Last Updated Date</th>
+                        <th>Flagged Date</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -22,6 +23,7 @@
                         <td>{{ result.version }}</td>
                         <td>{{ result.datetype }}</td>
                         <td>{{ result.last_updated_date }}</td>
+                        <td>{{ result.flagged_date }}</td>
                     </tr>
                 </tbody>
             </table>
