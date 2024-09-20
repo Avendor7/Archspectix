@@ -86,16 +86,12 @@ table {
 
 th,
 td {
-    border: 1px solid #777;
+    border: 1px solid #6a0184;
     padding: 10px;
     text-align: left;
 }
 
 th {
     background-color: #010101;
-}
-
-tr:hover {
-    background-color: #444444;
 }
 </style>
