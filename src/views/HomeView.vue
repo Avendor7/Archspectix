@@ -1,5 +1,5 @@
 <template>
-    <main>
+    <main class="flex-col-center">
         <h1>Hello World</h1>
 
         <input v-model="query" placeholder="Search" />
@@ -36,9 +36,19 @@ import { ref, watch } from "vue";
 
 import axios from "axios";
 
-const data = ref();
+const data = ref<Result[]>([]);
+
 const query = ref("htop");
 const isLoading = ref(false);
+
+interface Result {
+  source: string;
+  name: string;
+  version: string;
+  datetype: string;
+  last_updated_date: string;
+  flagged_date: string;
+}
 
 function fetchData() {
     isLoading.value = true;
@@ -60,3 +70,37 @@ function fetchData() {
 
 fetchData();
 </script>
+
+<style scoped>
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    border: 1px solid #777;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #010101;
+}
+
+tr:hover {
+    background-color: #444444;
+}
+
+table th:first-child,
+table td:first-child {
+    border-left: none;
+}
+</style>
