@@ -1,8 +1,9 @@
 <template>
     <main class="flex-col-center">
         <h1>Hello World</h1>
-
-        <input v-model="query" placeholder="Search" />
+        <div class="inputContainer">
+            <input class="searchBox" type="query" v-model="query" :placeholder="'Search'" @keydown.enter="fetchData">
+        </div>
         <div v-if="isLoading">Loading...</div>
         <div v-else class="resource">
             <table>
@@ -38,8 +39,10 @@ import axios from "axios";
 
 const data = ref<Result[]>([]);
 
-const query = ref("htop");
+const query = ref("");
 const isLoading = ref(false);
+
+const isFocusing = ref(false);
 
 interface Result {
   source: string;
@@ -98,5 +101,22 @@ th {
 .resource {
     border: 1px solid #000;
     box-shadow: 0 25px 50px -12px #673ab888;
+}
+
+.searchBox {
+    border: 3px solid #673ab888;
+    font-size: 3rem;
+    border-radius: .5rem;
+    padding: .5rem 1rem;
+    margin: 20px auto;
+    font-family: inherit;
+    outline: none;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 20px 20px -20px #673ab888;
+}
+
+.inputContainer {
+    text-align: center;
 }
 </style>
