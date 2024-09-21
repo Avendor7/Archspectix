@@ -4,7 +4,7 @@
 
         <input v-model="query" placeholder="Search" />
         <div v-if="isLoading">Loading...</div>
-        <div v-else>
+        <div v-else class="resource">
             <table>
                 <thead>
                     <tr>
@@ -86,12 +86,17 @@ table {
 
 th,
 td {
-    border: 1px solid #6a0184;
+    border: 1px solid #673ab888;
     padding: 10px;
     text-align: left;
 }
 
 th {
     background-color: #010101;
+}
+
+.resource {
+    border: 1px solid #000;
+    box-shadow: 0 25px 50px -12px #673ab888;
 }
 </style>
