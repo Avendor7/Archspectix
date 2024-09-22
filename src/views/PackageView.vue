@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container resource">
         <h1>Styled Table Example</h1>
         <table>
             <thead>
@@ -31,12 +31,30 @@ const items = ref([
 </script>
 
 <style scoped>
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.resource {
+    border: 1px solid #000;
+    box-shadow: 0 25px 50px -12px #673ab888;
+}
+
+th,
+td {
+    border: 1px solid #673ab888;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #010101;
+}
+
 .container {
-    display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    width: 100vw;
 
     .table-container {
         position: relative;
@@ -44,23 +62,6 @@ const items = ref([
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-
-    th,
-    td {
-        padding: 10px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-    }
-
-    th {
-        background-color: #f0f0f0;
     }
 }
 </style>
