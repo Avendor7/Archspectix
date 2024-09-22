@@ -1,6 +1,5 @@
 <template>
     <main class="flex-col-center">
-        <h1>Hello World</h1>
         <div class="inputContainer">
             <input class="searchBox" type="query" v-model="query" :placeholder="'Search'" @keydown.enter="fetchData">
         </div>
@@ -75,13 +74,6 @@ fetchData();
 </script>
 
 <style scoped>
-.main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-}
-
 table {
     border-collapse: collapse;
     width: 100%;
