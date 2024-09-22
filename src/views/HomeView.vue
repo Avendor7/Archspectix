@@ -106,6 +106,8 @@ th {
     margin-left: auto;
     margin-right: auto;
     box-shadow: 0 20px 20px -20px #673ab888;
+    background: var(--color-background);
+    color: var(--color-text);
 }
 
 .inputContainer {
