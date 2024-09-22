@@ -19,7 +19,9 @@
                 <tbody>
                     <tr v-for="result in data" :key="result.name">
                         <td>{{ result.source }}</td>
-                        <td>{{ result.name }}</td>
+                        <td>
+                            <RouterLink to="/detail">{{ result.name }}</RouterLink>
+                        </td>
                         <td>{{ result.version }}</td>
                         <td>{{ result.datetype }}</td>
                         <td>{{ result.last_updated_date }}</td>
