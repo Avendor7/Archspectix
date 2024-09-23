@@ -28,6 +28,32 @@ const items = ref([
     { id: 2, name: 'Jane Doe', age: 25 },
     { id: 3, name: 'Bob Smith', age: 40 }
 ]);
+
+import axios from "axios";
+
+const data = ref();
+
+//TODO: query should come from the route somehow
+const query = ref("");
+const isLoading = ref(false);
+
+function fetchData() {
+    isLoading.value = true;
+    console.log(query.value);
+    let url = "http://localhost:3001/alr?value=" + query.value;
+    console.log(url);
+    axios
+        .get(url)
+        .then((response) => {
+            data.value = response.data;
+        })
+        .catch((error) => {
+            console.error(error);
+        })
+        .finally(() => {
+            isLoading.value = false;
+        });
+}
 </script>
 
 <style scoped>
