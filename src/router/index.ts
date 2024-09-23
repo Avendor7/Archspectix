@@ -18,7 +18,7 @@ const router = createRouter({
             component: () => import("../views/AboutView.vue"),
         },
         {
-            path: "/detail",
+            path: "/detail/:query",
             name: "detail",
             component: () => import("../views/PackageView.vue"),
         },

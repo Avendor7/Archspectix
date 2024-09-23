@@ -20,7 +20,9 @@
                     <tr v-for="result in data" :key="result.name">
                         <td>{{ result.source }}</td>
                         <td>
-                            <RouterLink to="/detail">{{ result.name }}</RouterLink>
+                            <RouterLink :to="{ name: 'detail', params: { query: result.name }}">
+                                {{ result.name }}
+                            </RouterLink>
                         </td>
                         <td>{{ result.version }}</td>
                         <td>{{ result.datetype }}</td>
@@ -56,7 +58,7 @@ interface Result {
 
 function fetchData() {
     isLoading.value = true;
-    console.log(query.value);
+    //console.log(query.value);
     let url = "http://localhost:3001/search?value=" + query.value;
     console.log(url);
     axios

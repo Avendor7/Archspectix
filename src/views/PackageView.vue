@@ -4,16 +4,15 @@
         <table>
             <thead>
                 <tr>
-                    <th scope="col">#</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Age</th>
+                    <th scope="col">Version</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(item, index) in items" :key="index">
-                    <td>{{ item.id }}</td>
-                    <td>{{ item.name }}</td>
-                    <td>{{ item.age }}</td>
+                <tr v-for="result in data.results" :key="result.pkgname">
+                    <td>{{ result.pkgname }}</td>
+                    <td>{{ result.pkgver }}</td>
+
                 </tr>
             </tbody>
         </table>
@@ -21,31 +20,28 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
+import { useRoute } from 'vue-router';
 
-const items = ref([
-    { id: 1, name: 'John Doe', age: 30 },
-    { id: 2, name: 'Jane Doe', age: 25 },
-    { id: 3, name: 'Bob Smith', age: 40 }
-]);
 
 import axios from "axios";
 
-const data = ref();
+const data = ref({});
 
-//TODO: query should come from the route somehow
-const query = ref("");
 const isLoading = ref(false);
+const route = useRoute();
+const query = String(route.params.query); // You can also use a type guard for better TypeScript support
 
 function fetchData() {
     isLoading.value = true;
-    console.log(query.value);
-    let url = "http://localhost:3001/alr?value=" + query.value;
+    console.log(query);
+    let url = "http://localhost:3001/alr?value=" + query;
     console.log(url);
     axios
         .get(url)
         .then((response) => {
             data.value = response.data;
+            console.log(data.value);
         })
         .catch((error) => {
             console.error(error);
@@ -54,6 +50,9 @@ function fetchData() {
             isLoading.value = false;
         });
 }
+onMounted(() => {
+    fetchData();
+});
 </script>
 
 <style scoped>
