@@ -4,10 +4,16 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <template>
     <header>
-        <nav>
-            <RouterLink to="/">Home</RouterLink>
-            <RouterLink to="/about">About</RouterLink>
-        </nav>
+        <div class="nav-container">
+            <nav>
+                <RouterLink to="/">Home</RouterLink>
+                <RouterLink to="/about">About</RouterLink>
+                <a href="https://archlinux.org">Arch Linux</a>
+                <a href="https://archlinux.org">Arch Wiki</a>
+                <a href="https://archlinux.org">Arch Repository</a>
+                <a href="https://archlinux.org">Arch User Repository</a>
+            </nav>
+        </div>
     </header>
     <RouterView />
 </template>
