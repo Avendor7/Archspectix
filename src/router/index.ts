@@ -18,9 +18,14 @@ const router = createRouter({
             component: () => import("../views/AboutView.vue"),
         },
         {
-            path: "/detail/:query",
-            name: "detail",
-            component: () => import("../views/PackageView.vue"),
+            path: "/ALR/:query",
+            name: "ALR",
+            component: () => import("../views/PackageViewALR.vue"),
+        },
+        {
+            path: "/AUR/:query",
+            name: "AUR",
+            component: () => import("../views/PackageViewAUR.vue"),
         },
     ],
 });

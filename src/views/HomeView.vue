@@ -19,8 +19,13 @@
                 <tbody>
                     <tr v-for="result in data" :key="result.name">
                         <td>{{ result.source }}</td>
-                        <td>
-                            <RouterLink :to="{ name: 'detail', params: { query: result.name }}">
+                        <td v-if="result.source == 'ALR'">
+                            <RouterLink :to="{ name: 'ALR', params: { query: result.name }}">
+                                {{ result.name }}
+                            </RouterLink>
+                        </td>
+                        <td v-else="result.source == 'AUR'">
+                            <RouterLink :to="{ name: 'AUR', params: { query: result.name }}">
                                 {{ result.name }}
                             </RouterLink>
                         </td>
