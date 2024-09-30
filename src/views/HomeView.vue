@@ -78,8 +78,6 @@ function fetchData() {
             isLoading.value = false;
         });
 }
-
-fetchData();
 </script>
 
 <style scoped>
