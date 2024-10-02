@@ -4,16 +4,14 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <template>
     <header>
-        <div class="nav-container">
-            <nav>
-                <RouterLink to="/">Home</RouterLink>
-                <RouterLink to="/about">About</RouterLink>
-                <a href="https://archlinux.org">Arch Linux</a>
-                <a href="https://archlinux.org">Arch Wiki</a>
-                <a href="https://archlinux.org">Arch Repository</a>
-                <a href="https://archlinux.org">Arch User Repository</a>
-            </nav>
-        </div>
+        <nav>
+            <RouterLink to="/">Home</RouterLink>
+            <RouterLink to="/about">About</RouterLink>
+            <a href="https://archlinux.org" class="split">Arch Linux</a>
+            <a href="https://archlinux.org" class="split">Arch Wiki</a>
+            <a href="https://archlinux.org" class="split">Arch Repository</a>
+            <a href="https://archlinux.org" class="split">Arch User Repository</a>
+        </nav>
     </header>
     <RouterView />
 </template>
@@ -35,5 +33,13 @@ nav a {
 
 nav a:first-of-type {
     border: 0;
+}
+
+nav a:last-of-type {
+    border: 0;
+}
+
+nav a.split {
+    float: right;
 }
 </style>
