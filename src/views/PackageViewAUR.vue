@@ -9,9 +9,9 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="result in data.results" :key="result.pkgname">
-                    <td>{{ result.pkgname }}</td>
-                    <td>{{ result.pkgver }}</td>
+                <tr v-for="result in data.results" :key="result.Name">
+                    <td>{{ result.Name }}</td>
+                    <td>{{ result.Version }}</td>
 
                 </tr>
             </tbody>
@@ -26,7 +26,33 @@ import { useRoute } from 'vue-router';
 
 import axios from "axios";
 
-const data = ref({});
+const data = ref<results[]>([]);
+
+
+interface results {
+    resultcount: number,
+    results: result[],
+    type: string,
+    version: number
+}
+
+
+interface result {
+  Description: string;
+  FirstSubmitted: number | null;
+  ID: number;
+  LastModified: number;
+  Maintainer: string;
+  Name: string;
+  NumVotes: number;
+  OutOfDate: number | null;
+  PackageBase: string;
+  PackageBaseID: number;
+  Popularity: number;
+  URL: string;
+  URLPath: string;
+  Version: string;
+}
 
 const isLoading = ref(false);
 const route = useRoute();
@@ -35,13 +61,13 @@ const query = String(route.params.query); // You can also use a type guard for b
 function fetchData() {
     isLoading.value = true;
     console.log(query);
-    let url = "http://localhost:3001/alr?value=" + query;
+    let url = "http://localhost:3001/aur?value=" + query;
     console.log(url);
     axios
         .get(url)
         .then((response) => {
             data.value = response.data;
-            console.log(data.value);
+            console.log(JSON.stringify(data.value));
         })
         .catch((error) => {
             console.error(error);

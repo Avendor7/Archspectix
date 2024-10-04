@@ -26,11 +26,16 @@ import { useRoute } from 'vue-router';
 
 import axios from "axios";
 
-const data = ref({});
+const data = ref<Result[]>([]);
 
 const isLoading = ref(false);
 const route = useRoute();
 const query = String(route.params.query); // You can also use a type guard for better TypeScript support
+
+interface Result {
+    pkgname: string,
+    pkgver: number
+}
 
 function fetchData() {
     isLoading.value = true;
