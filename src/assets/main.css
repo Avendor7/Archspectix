@@ -8,6 +8,9 @@
   font-weight: normal;
 }
 
+a {
+    color: var(--color-primary);
+}
 
 @media (hover: hover) {
   a:hover {

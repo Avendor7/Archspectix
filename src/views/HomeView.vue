@@ -88,7 +88,7 @@ table {
 
 th,
 td {
-    border: 1px solid #673ab888;
+    border: 1px solid var(--color-primary);
     padding: 10px;
     text-align: left;
 }
@@ -99,11 +99,11 @@ th {
 
 .resource {
     border: 1px solid #000;
-    box-shadow: 0 25px 50px -12px #673ab888;
+    box-shadow: 0 25px 50px -12px var(--color-primary-shadow);
 }
 
 .searchBox {
-    border: 3px solid #673ab888;
+    border: 3px solid var(--color-primary);
     font-size: 3rem;
     border-radius: .5rem;
     padding: .5rem 1rem;
@@ -112,7 +112,7 @@ th {
     outline: none;
     margin-left: auto;
     margin-right: auto;
-    box-shadow: 0 20px 20px -20px #673ab888;
+    box-shadow: 0 20px 20px -20px var(--color-primary-shadow);
     background: var(--color-background);
     color: var(--color-text);
 }
