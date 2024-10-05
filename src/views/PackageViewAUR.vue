@@ -22,20 +22,14 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
-
-
 import axios from "axios";
 
-const data = ref<results[]>([]);
-
-
-interface results {
+interface data {
     resultcount: number,
     results: result[],
     type: string,
     version: number
 }
-
 
 interface result {
   Description: string;
@@ -54,6 +48,13 @@ interface result {
   Version: string;
 }
 
+const data = ref<data>({
+    resultcount: 0,
+    results: [],
+    type: '',
+    version: 0,
+});
+
 const isLoading = ref(false);
 const route = useRoute();
 const query = String(route.params.query); // You can also use a type guard for better TypeScript support
@@ -61,7 +62,7 @@ const query = String(route.params.query); // You can also use a type guard for b
 function fetchData() {
     isLoading.value = true;
     console.log(query);
-    let url = "http://localhost:3001/aur?value=" + query;
+    let url = "http://localhost:3001/aur/info?value=" + query;
     console.log(url);
     axios
         .get(url)
