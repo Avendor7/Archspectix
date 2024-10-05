@@ -1,4 +1,5 @@
 @import './base.css';
+@import './purple.css';
 
 #app {
   max-width: 1280px;
@@ -7,13 +8,6 @@
   font-weight: normal;
 }
 
-a,
-.purple{
-    text-decoration: none;
-    color:#b25bfd;
-    transition: 0.4s;
-    padding: 3px;
-}
 
 @media (hover: hover) {
   a:hover {
