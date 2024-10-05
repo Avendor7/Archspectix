@@ -1,9 +1,10 @@
 <template>
     <div class="about">
-        <h1>This is an about page</h1>
+        <ColorPicker />
     </div>
 </template>
 
 <style></style>
 <script setup lang="ts">
+import ColorPicker from '@/components/ColorPicker.vue';
 </script>
