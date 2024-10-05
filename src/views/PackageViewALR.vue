@@ -12,7 +12,6 @@
                 <tr v-for="result in data.results" :key="result.pkgname">
                     <td>{{ result.pkgname }}</td>
                     <td>{{ result.pkgver }}</td>
-
                 </tr>
             </tbody>
         </table>
@@ -20,22 +19,71 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
-import { useRoute } from 'vue-router';
-
-
+import { onMounted, ref } from "vue";
+import { useRoute } from "vue-router";
 import axios from "axios";
 
-const data = ref<Result[]>([]);
+interface PackageInfo {
+    pkgname: string;
+    pkgbase: string;
+    repo: string;
+    arch: string;
+    pkgver: string;
+    pkgrel: number;
+    epoch: number;
+    pkgdesc: string;
+    url: string;
+    filename: string;
+    compressed_size: number;
+    installed_size: number;
+    build_date: Date;
+    last_update: Date | null;
+    flag_date: Date | null;
+    maintainers: string[];
+    packager: string;
+    groups: string[];
+    licenses: string[];
+    conflicts: string[];
+    provides: string[];
+    replaces: string[];
+    depends: Dependency[];
+    optdepends: OptDependency[];
+    makedepends: string[];
+    checkdepends: string[];
+}
+interface Dependency {
+    pkg: string;
+    version?: string;
+    operator?: string;
+    arch?: string;
+}
+
+interface OptDependency {
+    name: string;
+    description: string;
+}
+interface Data{
+    version: number,
+    limit: number,
+    valid: boolean,
+    results: PackageInfo[],
+    type: string,
+    num_pages: number,
+    page: number
+}
+const data = ref<Data>({
+    version: 0,
+    limit: 0,
+    valid: false,
+    results: [],
+    type: '',
+    num_pages:  0,
+    page: 0
+});
 
 const isLoading = ref(false);
 const route = useRoute();
 const query = String(route.params.query); // You can also use a type guard for better TypeScript support
-
-interface Result {
-    pkgname: string,
-    pkgver: number
-}
 
 function fetchData() {
     isLoading.value = true;
