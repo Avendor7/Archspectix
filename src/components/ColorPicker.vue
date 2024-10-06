@@ -1,10 +1,11 @@
 <template>
     <div class="container">
-        <h2>Color Picker</h2>
+        <h2>Colour Picker</h2>
         <div class="picker">
             <label for="primaryColour">Primary</label>
-            <input id="primaryColour" class="pickerInput" type="color" :value="primaryColour">
-            <span>{{ primaryColour }}</span>
+            <input id="primaryColour" class="pickerInput" type="color" :value="currentInputValue"
+                @change="setPrimary(currentInputValue)">
+            <span>{{ currentInputValue }}</span>
         </div>
         <ul>
             <li v-for="color in presetColors" :key="color.primary">
@@ -17,10 +18,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref , computed} from 'vue';
+import { ref} from 'vue';
 
 const root = ref<HTMLStyleElement>(document.querySelector(':root') as HTMLStyleElement);
 const primaryColour = ref<string>('');
+const currentInputValue = ref<string>('#000');
 
 //TODO maybe simplify this to a normal array
 const presetColors = [
@@ -78,6 +80,11 @@ getPrimary();
 
 .picker {
     margin: 1rem auto;
+
+    span {
+        font-size: 24px;
+        margin: 0.3rem;
+    }
 }
 
 .pickerInput {
