@@ -6,15 +6,10 @@
             <input id="primaryColour" class="pickerInput" type="color" :value="primaryColour">
             <span>{{ primaryColour }}</span>
         </div>
-        <div class="picker">
-            <label for="secondaryColour">Secondary</label>
-            <input id="secondaryColour" class="pickerInput" type="color" :value="secondaryColour">
-            <span>{{ primaryColour }}</span>
-        </div>
         <ul>
             <li v-for="color in presetColors" :key="color.primary">
-                <div class="preset" :style="{backgroundColor:`${color.primary}`}">
-                    <span style="color:#000;">{{color.primary}}</span>
+                <div class="preset" @click="setPrimary(color.primary)" :style="{backgroundColor:`${color.primary}`}">
+                    <span :style="{color: calculateBrightness(`${color.primary}`)}">{{color.primary}}</span>
                 </div>
             </li>
         </ul>
@@ -22,12 +17,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref , computed} from 'vue';
 
-interface Color {
-  hex: string;
-}
-
+const root = ref<HTMLStyleElement>(document.querySelector(':root') as HTMLStyleElement);
+const primaryColour = ref<string>('');
 const presetColors = [
     {primary: '#B25BFD', primaryShadow:'#B25BFD44', secondary: '#FF0000'},
     {primary: '#28FF00', primaryShadow:'#28FF0044', secondary: '#FF0000'},
@@ -37,8 +30,36 @@ const presetColors = [
     {primary: '#FF073A', primaryShadow:'#FF073A44', secondary: '#FF0000'},
 ];
 
-const primaryColour = ref('#3344ff');
 
+//TODO set the primary shadow by adding 44 to the primary
+function setPrimary(primary: string) {
+    if (root.value) {
+        root.value.style.setProperty('--color-primary', primary);
+    }
+}
+
+//TODO this should come from session storage or something in case the user changes the colour.
+function getPrimary(){
+    if (root.value) {
+        let rs = getComputedStyle(root.value);
+        primaryColour.value = rs.getPropertyValue('--color-primary');
+    }
+}
+
+function calculateBrightness(color: string) {
+  const r = parseInt(color.slice(1, 3), 16);
+  const g = parseInt(color.slice(3, 5), 16);
+  const b = parseInt(color.slice(5, 7), 16);
+
+  // https://codepen.io/WebSeed/pen/pvgqEq 
+  // https://stackoverflow.com/questions/1855884/determine-font-color-based-on-background-color
+  const brightness = 1 - (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  
+
+  return brightness > 0.5 ? 'white' : 'black';
+}
+
+getPrimary();
 
 </script>
 
@@ -48,7 +69,7 @@ const primaryColour = ref('#3344ff');
     width: 250px;
     margin: auto;
     padding: 1rem;
-    border: solid 1px #ccc;
+    border: solid 1px var(--color-primary);
     box-shadow: var(--shadow);
     background-color: #222;
     border-radius: 10px;
@@ -75,7 +96,7 @@ label {
 ul {
     list-style-type: none;
     padding: 0px;
-    margin: 1rem auto;
+    margin: auto;
 }
 
 li {
