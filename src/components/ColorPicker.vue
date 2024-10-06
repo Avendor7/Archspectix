@@ -21,20 +21,21 @@ import { ref , computed} from 'vue';
 
 const root = ref<HTMLStyleElement>(document.querySelector(':root') as HTMLStyleElement);
 const primaryColour = ref<string>('');
+
+//TODO maybe simplify this to a normal array
 const presetColors = [
-    {primary: '#B25BFD', primaryShadow:'#B25BFD44', secondary: '#FF0000'},
-    {primary: '#28FF00', primaryShadow:'#28FF0044', secondary: '#FF0000'},
-    {primary: '#FF10F0', primaryShadow:'#FF10F044', secondary: '#FF0000'},
-    {primary: '#1F51FF', primaryShadow:'#1F51FF44', secondary: '#FF0000'},
-    {primary: '#CFFF04', primaryShadow:'#CFFF0444', secondary: '#FF0000'},
-    {primary: '#FF073A', primaryShadow:'#FF073A44', secondary: '#FF0000'},
+    {primary: '#B25BFD'},
+    {primary: '#28FF00'},
+    {primary: '#FF10F0'},
+    {primary: '#1F51FF'},
+    {primary: '#CFFF04'},
+    {primary: '#FF073A'},
 ];
 
-
-//TODO set the primary shadow by adding 44 to the primary
 function setPrimary(primary: string) {
     if (root.value) {
         root.value.style.setProperty('--color-primary', primary);
+        root.value.style.setProperty('--color-primary-shadow', primary + "44");
     }
 }
 
