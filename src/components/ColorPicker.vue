@@ -3,7 +3,7 @@
         <h2>Colour Picker</h2>
         <div class="picker">
             <label for="primaryColour">Primary</label>
-            <input id="primaryColour" class="pickerInput" type="color" :value="currentInputValue"
+            <input id="primaryColour" class="pickerInput" type="color" v-model="currentInputValue"
                 @change="setPrimary(currentInputValue)">
             <span>{{ currentInputValue }}</span>
         </div>
@@ -22,7 +22,7 @@ import { ref} from 'vue';
 
 const root = ref<HTMLStyleElement>(document.querySelector(':root') as HTMLStyleElement);
 const primaryColour = ref<string>('');
-const currentInputValue = ref<string>('#000');
+const currentInputValue = ref<string>('#000000');
 
 //TODO maybe simplify this to a normal array
 const presetColors = [
