@@ -3,8 +3,7 @@
         <div class="inputContainer">
             <input class="searchBox" type="query" v-model="query" :placeholder="'Search'" @keydown.enter="fetchData">
         </div>
-        <div v-if="isLoading">Loading...</div>
-        <div v-else class="resource">
+        <div v-if="hasLoaded" class="resource">
             <table>
                 <thead>
                     <tr>
@@ -37,6 +36,8 @@
                 </tbody>
             </table>
         </div>
+        <div v-else-if="isLoading">Loading...</div>
+        <div v-else></div>
     </main>
 </template>
 
@@ -49,7 +50,7 @@ const data = ref<Result[]>([]);
 
 const query = ref("");
 const isLoading = ref(false);
-
+const hasLoaded = ref(false);
 const isFocusing = ref(false);
 
 interface Result {
@@ -76,6 +77,7 @@ function fetchData() {
         })
         .finally(() => {
             isLoading.value = false;
+            hasLoaded.value = true;
         });
 }
 </script>
