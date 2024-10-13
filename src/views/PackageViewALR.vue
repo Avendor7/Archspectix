@@ -1,6 +1,6 @@
 <template>
     <div class="container resource">
-        <h1>Styled Table Example</h1>
+        <h1>{{ data.results[0].pkgname }}</h1>
         <table>
             <thead>
                 <tr>
@@ -88,7 +88,7 @@ const query = String(route.params.query); // You can also use a type guard for b
 function fetchData() {
     isLoading.value = true;
     console.log(query);
-    let url = "http://localhost:3001/alr?value=" + query;
+    let url = "http://localhost:3001/alr/info?value=" + query;
     console.log(url);
     axios
         .get(url)
