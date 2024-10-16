@@ -1,7 +1,7 @@
 <template>
-    <div class="container resource">
+    <div class="container">
         <h1>{{ data.results[0].pkgname }}</h1>
-        <table>
+        <table class="resource">
             <thead>
                 <tr>
                     <th scope="col">Name</th>
@@ -115,7 +115,6 @@ table {
 }
 
 .resource {
-    border: 1px solid #000;
     box-shadow: 0 25px 50px -12px #673ab888;
 }
 
@@ -131,6 +130,7 @@ th {
 }
 
 .container {
+    width: 50%;
     justify-content: center;
     align-items: center;
 
