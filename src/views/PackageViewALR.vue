@@ -127,7 +127,7 @@ td {
 
 @media (prefers-color-scheme: light) {
     th {
-        background-color: #DDD;
+        background-color: #CCC;
     }
 }
 
