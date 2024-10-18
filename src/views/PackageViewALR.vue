@@ -2,16 +2,10 @@
     <div class="container">
         <h1>{{ data.results[0].pkgname }}</h1>
         <table class="resource">
-            <thead>
-                <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Version</th>
-                </tr>
-            </thead>
             <tbody>
-                <tr v-for="result in data.results" :key="result.pkgname">
-                    <td>{{ result.pkgname }}</td>
-                    <td>{{ result.pkgver }}</td>
+                <tr v-for="(value,key) in data.results[0]" :key="key">
+                    <th>{{ key }}</th>
+                    <td>{{ value }}</td>
                 </tr>
             </tbody>
         </table>
@@ -125,9 +119,18 @@ td {
     text-align: left;
 }
 
-th {
-    background-color: #010101;
+@media (prefers-color-scheme: dark) {
+    th {
+        background-color: #010101;
+    }
 }
+
+@media (prefers-color-scheme: light) {
+    th {
+        background-color: #DDD;
+    }
+}
+
 
 .container {
     width: 50%;
