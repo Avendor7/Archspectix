@@ -3,10 +3,56 @@
         <h1>{{ data.results[0].pkgname }}</h1>
         <table class="resource">
             <tbody>
-                <tr v-for="(value,key) in data.results[0]" :key="key">
-                    <th>{{ key }}</th>
-                    <td>{{ value }}</td>
+                <tr>
+                    <th>Name</th>
+                    <td>{{ data.results[0].pkgname }}</td>
                 </tr>
+                <tr>
+                    <th>Version</th>
+                    <td>{{ data.results[0].pkgver }}</td>
+                </tr>
+                <tr>
+                    <th>URL</th>
+                    <td><a :href="data.results[0].url">{{ data.results[0].url }}</a></td>
+                </tr>
+                <tr>
+                    <th>License(s)</th>
+                    <td>{{ data.results[0].licenses }}</td>
+                </tr>
+                <tr>
+                    <th>Package Size</th>
+                    <td>{{ data.results[0].compressed_size }}</td>
+                </tr>
+                <tr>
+                    <th>Installed Size</th>
+                    <td>{{ data.results[0].installed_size }}</td>
+                </tr>
+                <tr>
+                    <th>Build Date</th>
+                    <td>{{ data.results[0].build_date }}</td>
+                </tr>
+                <tr>
+                    <th>Maintainers</th>
+                    <td>{{ data.results[0].maintainers }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <h2>Dependencies</h2>
+        <table>
+            <tbody>
+                <tr v-for="(value, index) in data.results[0].depends" :key="index">{{ value }}</tr>
+            </tbody>
+        </table>
+        <h2>Optional Dependencies</h2>
+        <table>
+            <tbody>
+                <tr v-for="(value, index) in data.results[0].optdepends" :key="index">{{ value }}</tr>
+            </tbody>
+        </table>
+        <h2>Required by</h2>
+        <table>
+            <tbody>
+                <tr v-for="(value, index) in data.results[0].makedepends" :key="index">{{ value }}</tr>
             </tbody>
         </table>
     </div>
