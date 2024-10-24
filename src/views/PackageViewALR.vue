@@ -40,24 +40,33 @@
             </table>
         </div>
         <div class="col-container">
-            <h2>Dependencies</h2>
-            <table>
-                <tbody>
-                    <tr v-for="(value, index) in data.results[0].depends" :key="index">{{ value }}</tr>
-                </tbody>
-            </table>
-            <h2>Optional Dependencies</h2>
-            <table>
-                <tbody>
-                    <tr v-for="(value, index) in data.results[0].optdepends" :key="index">{{ value }}</tr>
-                </tbody>
-            </table>
-            <h2>Required by</h2>
-            <table>
-                <tbody>
-                    <tr v-for="(value, index) in data.results[0].makedepends" :key="index">{{ value }}</tr>
-                </tbody>
-            </table>
+            <div class="column">
+                <h2>Dependencies</h2>
+                <table>
+                    <tbody>
+                        <tr v-for="(value, index) in data.results[0].depends" :key="index">{{ value }}</tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="column">
+                <h2>Optional Dependencies</h2>
+                <table>
+                    <tbody>
+                        <tr v-for="(value, index) in data.results[0].optdepends" :key="index">{{ value }}</tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="column">
+                <h2>Required by</h2>
+                <table>
+                    <tbody>
+                        <tr v-for="(value, index) in data.results[0].makedepends" :key="index">{{ value }}</tr>
+                    </tbody>
+                </table>
+            </div>
+
         </div>
 
     </div>
@@ -198,7 +207,37 @@ td {
 }
 
 .col-container {
-    width: 100%;
-    column-count: 2;
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px;
+
+}
+
+.column {
+    background-color: #010101;
+    padding: 10px 10px;
+    flex-basis: 33.33%;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #673ab888;
+    box-shadow: 0 25px 50px -12px #673ab888;
+}
+
+.card-header {
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.card-content {
+    padding-top: 20px;
+    color: #ccc;
+    /* lighter gray for content */
+}
+
+h2 {
+    font-weight: bold;
+    margin-bottom: 15px;
 }
 </style>
