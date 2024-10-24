@@ -22,11 +22,11 @@
                     </tr>
                     <tr>
                         <th>Package Size</th>
-                        <td>{{ data.results[0].compressed_size }}</td>
+                        <td>{{ formatCompressedSize }}</td>
                     </tr>
                     <tr>
                         <th>Installed Size</th>
-                        <td>{{ data.results[0].installed_size }}</td>
+                        <td>{{ formatInstalledSize }}</td>
                     </tr>
                     <tr>
                         <th>Build Date</th>
@@ -75,7 +75,7 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeMount, ref } from "vue";
+import { onBeforeMount, ref, computed } from "vue";
 import { useRoute } from "vue-router";
 import axios from "axios";
 
@@ -113,7 +113,6 @@ interface Dependency {
     operator?: string;
     arch?: string;
 }
-
 interface OptDependency {
     name: string;
     description: string;
@@ -162,6 +161,20 @@ function fetchData() {
 onBeforeMount(() => {
     fetchData();
 });
+
+//I don't really like this block. Some duplication but Typescript seems to not like combining things
+const formatCompressedSize = computed(() => {
+    return formatSize(data.value.results[0].compressed_size);
+});
+
+const formatInstalledSize = computed(() => {
+    return formatSize(data.value.results[0].installed_size);
+});
+
+const formatSize = (size: number) => {
+    return (size / Math.pow(2, 10)).toFixed(2) + ' KB';
+};
+
 </script>
 
 <style scoped>
