@@ -33,12 +33,14 @@
                         <td>{{ data.results[0].build_date }}</td>
                     </tr>
                     <tr>
+                        <!-- TODO possible to link or something here? -->
                         <th>Maintainers</th>
                         <td>{{ data.results[0].maintainers }}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
+        <!-- TODO This should probably be in components somehow. Formatting on the text also necessary -->
         <div class="col-container">
             <div class="column">
                 <h2>Dependencies</h2>
