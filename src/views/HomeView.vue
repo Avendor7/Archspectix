@@ -31,7 +31,7 @@
                         <td>{{ result.version }}</td>
                         <td>{{ result.datetype }}</td>
                         <td>{{ result.last_updated_date }}</td>
-                        <td>{{ result.flagged_date }}</td>
+                        <td>{{ formatDateString }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -42,7 +42,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import {computed, ref, watch} from "vue";
 
 import axios from "axios";
 
@@ -79,6 +79,15 @@ function fetchData() {
             isLoading.value = false;
             hasLoaded.value = true;
         });
+}
+
+const formatDateString = computed(() => {
+  return "blah";
+  //return dateToString(data.value.flagged_date);
+});
+
+function dateToString(dateValue: number) {
+  return new Date(Number(dateValue) * 1000).toISOString().replace('T', ' ').slice(0, -5);
 }
 </script>
 
