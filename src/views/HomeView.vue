@@ -30,8 +30,8 @@
                         </td>
                         <td>{{ result.version }}</td>
                         <td>{{ result.datetype }}</td>
-                        <td>{{ result.last_updated_date }}</td>
-                        <td>{{ formatDateString }}</td>
+                        <td>{{ formatUnixTimestamp(result.last_updated_date) }}</td>
+                        <td>{{ formatUnixTimestamp(result.flagged_date) }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -42,7 +42,7 @@
 </template>
 
 <script setup lang="ts">
-import {computed, ref, watch} from "vue";
+import {ref} from "vue";
 
 import axios from "axios";
 
@@ -58,13 +58,12 @@ interface Result {
   name: string;
   version: string;
   datetype: string;
-  last_updated_date: string;
-  flagged_date: string;
+  last_updated_date: number; // Changed type to number
+  flagged_date: number; // Changed type to number
 }
 
 function fetchData() {
     isLoading.value = true;
-    //console.log(query.value);
     let url = "http://localhost:3001/search?value=" + query.value;
     console.log(url);
     axios
@@ -81,14 +80,16 @@ function fetchData() {
         });
 }
 
-const formatDateString = computed(() => {
-  return "blah";
-  //return dateToString(data.value.flagged_date);
-});
-
-function dateToString(dateValue: number) {
-  return new Date(Number(dateValue) * 1000).toISOString().replace('T', ' ').slice(0, -5);
+function formatUnixTimestamp(timestamp: number) {
+  return new Date(timestamp * 1000).toLocaleString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit'
+  })
 }
+
 </script>
 
 <style scoped>
