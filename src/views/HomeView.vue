@@ -10,7 +10,6 @@
                         <th>Source</th>
                         <th>Name</th>
                         <th>Version</th>
-                        <th>Data Type</th>
                         <th>Last Updated Date</th>
                         <th>Flagged Date</th>
                     </tr>
@@ -29,9 +28,8 @@
                             </RouterLink>
                         </td>
                         <td>{{ result.version }}</td>
-                        <td>{{ result.datetype }}</td>
-                        <td>{{ formatUnixTimestamp(result.last_updated_date) }}</td>
-                        <td>{{ formatUnixTimestamp(result.flagged_date) }}</td>
+                        <td>{{ formatDate(result.last_updated_date) }}</td>
+                        <td>{{ formatDate(result.flagged_date) }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -57,9 +55,8 @@ interface Result {
   source: string;
   name: string;
   version: string;
-  datetype: string;
-  last_updated_date: number; // Changed type to number
-  flagged_date: number; // Changed type to number
+  last_updated_date: Date;
+  flagged_date: Date;
 }
 
 function fetchData() {
@@ -80,14 +77,14 @@ function fetchData() {
         });
 }
 
-function formatUnixTimestamp(timestamp: number) {
-  return new Date(timestamp * 1000).toLocaleString('en-US', {
+function formatDate(timestamp: Date) {
+  return timestamp ? new Date(timestamp).toLocaleString('en-US', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
     hour: '2-digit',
     minute: '2-digit'
-  })
+  }) :"";
 }
 
 </script>
