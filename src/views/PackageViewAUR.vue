@@ -16,6 +16,10 @@
                   <th>URL</th>
                   <td><a :href="data.results[0].URL">{{ data.results[0].URL }}</a></td>
                 </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>{{data.results[0].Description}}</td>
+                </tr>
             </tbody>
         </table>
     </div>
