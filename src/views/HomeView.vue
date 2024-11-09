@@ -1,5 +1,9 @@
 <template>
     <main class="flex-col-center">
+      <div class="item">
+        <button @click="openModal">Choose Colour</button>
+      </div>
+        <color-picker :isOpen="isModalOpened" @modal-close="closeModal"/>
         <div class="inputContainer">
             <input class="searchBox" type="query" v-model="query" :placeholder="'Search'" @keydown.enter="fetchData">
         </div>
@@ -43,7 +47,7 @@
 import {ref} from "vue";
 
 import axios from "axios";
-
+import ColorPicker from "@/components/ColorPicker.vue";
 const data = ref<Result[]>([]);
 
 const query = ref("");
@@ -87,6 +91,14 @@ function formatDate(timestamp: Date) {
   }) :"";
 }
 
+const isModalOpened = ref(false);
+const openModal = () => {
+  isModalOpened.value = true;
+};
+const closeModal = () => {
+  isModalOpened.value = false;
+};
+
 </script>
 
 <style scoped>
@@ -94,7 +106,6 @@ table {
     border-collapse: collapse;
     width: 100%;
 }
-
 th,
 td {
     border: 1px solid var(--color-primary);
@@ -105,7 +116,6 @@ td {
 th {
     background-color: #010101;
 }
-
 .resource {
     border: 1px solid #000;
     box-shadow: 0 25px 50px -12px var(--color-primary-shadow);
@@ -119,8 +129,6 @@ th {
     margin: 20px auto;
     font-family: inherit;
     outline: none;
-    margin-left: auto;
-    margin-right: auto;
     box-shadow: 0 20px 20px -20px var(--color-primary-shadow);
     background: var(--color-background);
     color: var(--color-text);
@@ -129,4 +137,5 @@ th {
 .inputContainer {
     text-align: center;
 }
+
 </style>

@@ -1,4 +1,5 @@
 <template>
+  <div v-if="isOpen" class="modal-mask">
     <div class="container">
         <h2>Colour Picker</h2>
         <div class="picker">
@@ -14,16 +15,23 @@
                 </div>
             </li>
         </ul>
+      <button @click.stop="emits('modal-close')">Close</button>
     </div>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { ref} from 'vue';
+import { ref, defineProps, defineEmits} from 'vue';
 
 const root = ref<HTMLStyleElement>(document.querySelector(':root') as HTMLStyleElement);
 const primaryColour = ref<string>('');
 const currentInputValue = ref<string>('#000000');
-
+const props = defineProps({
+  isOpen: Boolean,
+});
+const emits = defineEmits(
+  ["modal-close"]
+)
 //TODO maybe simplify this to a normal array
 const presetColors = [
     {primary: '#B25BFD'},
@@ -109,5 +117,15 @@ ul {
 
 li {
     padding-bottom: 5px;
+}
+
+.modal-mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 </style>
