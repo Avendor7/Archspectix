@@ -1,22 +1,25 @@
 <template>
-    <div class="container resource">
-        <h1>Styled Table Example</h1>
-        <table>
-            <thead>
+  <div>
+    <div class="container">
+        <h1>{{data.results[0].Name}}</h1>
+        <table class="resource">
+            <tbody>
                 <tr>
                     <th scope="col">Name</th>
-                    <th scope="col">Version</th>
+                    <td>{{ data.results[0].Name }}</td>
                 </tr>
-            </thead>
-            <tbody>
-                <tr v-for="result in data.results" :key="result.Name">
-                    <td>{{ result.Name }}</td>
-                    <td>{{ result.Version }}</td>
-
+                <tr>
+                    <th>Version</th>
+                    <td>{{ data.results[0].Version }}</td>
+                </tr>
+                <tr>
+                  <th>URL</th>
+                  <td><a :href="data.results[0].URL">{{ data.results[0].URL }}</a></td>
                 </tr>
             </tbody>
         </table>
     </div>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -24,14 +27,14 @@ import { onBeforeMount, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import axios from "axios";
 
-interface data {
+interface Data {
     resultcount: number,
-    results: result[],
+    results: Result[],
     type: string,
     version: number
 }
 
-interface result {
+interface Result {
   Description: string;
   FirstSubmitted: number | null;
   ID: number;
@@ -48,7 +51,7 @@ interface result {
   Version: string;
 }
 
-const data = ref<data>({
+const data = ref<Data>({
     resultcount: 0,
     results: [],
     type: '',
@@ -61,9 +64,7 @@ const query = String(route.params.query); // You can also use a type guard for b
 
 function fetchData() {
     isLoading.value = true;
-    console.log(query);
     let url = "http://localhost:3001/aur/info?value=" + query;
-    console.log(url);
     axios
         .get(url)
         .then((response) => {
@@ -89,7 +90,6 @@ table {
 }
 
 .resource {
-    border: 1px solid #000;
     box-shadow: 0 25px 50px -12px #673ab888;
 }
 
@@ -99,12 +99,19 @@ td {
     padding: 10px;
     text-align: left;
 }
-
-th {
-    background-color: #010101;
+@media (prefers-color-scheme: dark) {
+    th {
+        background-color: #010101;
+    }
 }
 
+@media (prefers-color-scheme: light) {
+    th {
+        background-color: #CCC;
+    }
+}
 .container {
+  width:50%;
     justify-content: center;
     align-items: center;
 
@@ -115,5 +122,23 @@ th {
         border-radius: 10px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
+}
+
+.col-container {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+
+}
+
+.column {
+  background-color: #010101;
+  padding: 10px 10px;
+  flex-basis: 33.33%;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #673ab888;
+  box-shadow: 0 25px 50px -12px #673ab888;
 }
 </style>
