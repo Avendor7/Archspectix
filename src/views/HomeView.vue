@@ -1,12 +1,11 @@
 <template>
     <main class="flex-col-center">
-      <div class="item">
-          <font-awesome-icon :icon="['fas', 'gear']" style="color: #4c7ea4;" />
-        <button @click="openModal">Choose Colour</button>
-      </div>
+
+
         <color-picker :isOpen="isModalOpened" @modal-close="closeModal"/>
         <div class="inputContainer">
             <input class="searchBox" type="query" v-model="query" :placeholder="'Search'" @keydown.enter="fetchData">
+            <FontAwesomeIcon @click="openModal" :icon="faGear" class="settingsIcon"/>
         </div>
         <div v-if="hasLoaded" class="resource">
             <table>
@@ -49,6 +48,8 @@ import {ref} from "vue";
 
 import axios from "axios";
 import ColorPicker from "@/components/ColorPicker.vue";
+import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+import { faGear } from '@fortawesome/free-solid-svg-icons/faGear'
 const data = ref<Result[]>([]);
 
 const query = ref("");
@@ -138,5 +139,13 @@ th {
 .inputContainer {
     text-align: center;
 }
-
+.settingsIcon{
+    padding-left:10px;
+    height:40px;
+    width:40px;
+    color: var(--color-primary);
+}
+.settingsIcon:hover{
+    cursor: pointer;
+}
 </style>

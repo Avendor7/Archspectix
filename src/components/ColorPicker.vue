@@ -81,7 +81,7 @@ getPrimary();
     margin: auto;
     padding: 1rem;
     border: solid 1px var(--color-primary);
-    box-shadow: var(--shadow);
+    box-shadow: var(--color-primary-shadow);
     background-color: #222;
     border-radius: 10px;
 }
@@ -99,7 +99,7 @@ getPrimary();
     width: 25%;
     height: 30px;
     border: solid 1px #ccc;
-    box-shadow: var(--shadow);
+    box-shadow: var(--color-primary-shadow);
     background-color: #fff;
     text-align: center;
     margin: 0.5rem auto;
@@ -127,5 +127,14 @@ li {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
+}
+button {
+    background: transparent;
+    border: 1px solid var(--color-primary);
+    box-shadow: 0 20px 20px -20px var(--color-primary-shadow);
+    padding: 10px;
+    margin: 0;
+    outline: none;
+    color: var(--color-primary);
 }
 </style>
