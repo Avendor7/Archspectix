@@ -211,14 +211,6 @@ td {
     width: 50%;
     justify-content: center;
     align-items: center;
-
-    .table-container {
-        position: relative;
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
 }
 
 .col-container {
@@ -231,24 +223,11 @@ td {
 
 .column {
     background-color: #010101;
-    padding: 10px 10px;
     flex-basis: 33.33%;
     padding: 20px;
     border-radius: 10px;
     border: 1px solid #673ab888;
     box-shadow: 0 25px 50px -12px #673ab888;
-}
-
-.card-header {
-    font-weight: bold;
-    color: #fff;
-    margin-bottom: 10px;
-}
-
-.card-content {
-    padding-top: 20px;
-    color: #ccc;
-    /* lighter gray for content */
 }
 
 h2 {
