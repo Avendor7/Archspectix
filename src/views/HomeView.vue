@@ -1,6 +1,7 @@
 <template>
     <main class="flex-col-center">
       <div class="item">
+          <font-awesome-icon :icon="['fas', 'gear']" style="color: #4c7ea4;" />
         <button @click="openModal">Choose Colour</button>
       </div>
         <color-picker :isOpen="isModalOpened" @modal-close="closeModal"/>
