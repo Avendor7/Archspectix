@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="!isLoading">
     <div class="container">
         <h1>{{data.results[0].Name}}</h1>
         <table class="resource">
@@ -33,26 +33,31 @@ import axios from "axios";
 
 interface Data {
     resultcount: number,
-    results: Result[],
+    results: AURPackage[],
     type: string,
     version: number
 }
 
-interface Result {
-  Description: string;
-  FirstSubmitted: number | null;
-  ID: number;
-  LastModified: number;
-  Maintainer: string;
-  Name: string;
-  NumVotes: number;
-  OutOfDate: number | null;
-  PackageBase: string;
-  PackageBaseID: number;
-  Popularity: number;
-  URL: string;
-  URLPath: string;
-  Version: string;
+interface AURPackage {
+    Depends: string[];
+    Description: string;
+    FirstSubmitted: number;
+    ID: number;
+    Keywords: string[];
+    LastModified: number;
+    License: string[];
+    Maintainer: string;
+    MakeDepends: string[];
+    Name: string;
+    NumVotes: number;
+    OutOfDate: number;
+    PackageBase: string;
+    PackageBaseID: number;
+    Popularity: number;
+    Submitter: string;
+    URL: string;
+    URLPath: string;
+    Version: string;
 }
 
 const data = ref<Data>({
@@ -73,7 +78,6 @@ function fetchData() {
         .get(url)
         .then((response) => {
             data.value = response.data;
-            console.log(JSON.stringify(data.value));
         })
         .catch((error) => {
             console.error(error);
@@ -115,7 +119,8 @@ td {
     }
 }
 .container {
-  width:50%;
+    padding-top:20px;
+    width:50%;
     justify-content: center;
     align-items: center;
 

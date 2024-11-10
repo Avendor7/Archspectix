@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="!isLoading">
         <div class="container">
             <h1>{{ data.results[0].pkgname }}</h1>
             <table class="resource">
