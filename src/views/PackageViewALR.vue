@@ -184,12 +184,13 @@ table {
 }
 
 .resource {
-    box-shadow: 0 25px 50px -12px #673ab888;
+    box-shadow: 0 25px 50px -12px var(--color-primary-shadow);
 }
 
 th,
 td {
-    border: 1px solid #673ab888;
+
+    border: 1px solid var(--color-primary);
     padding: 10px;
     text-align: left;
 }
@@ -226,8 +227,8 @@ td {
     flex-basis: 33.33%;
     padding: 20px;
     border-radius: 10px;
-    border: 1px solid #673ab888;
-    box-shadow: 0 25px 50px -12px #673ab888;
+    border: 1px solid var(--color-primary);
+    box-shadow: 0 25px 50px -12px var(--color-primary-shadow);
 }
 
 h2 {
