@@ -20,9 +20,44 @@
                     <th>Description</th>
                     <td>{{data.results[0].Description}}</td>
                 </tr>
+                <tr>
+                    <th>License</th>
+                    <td><span v-for="licence in data.results[0].License">{{licence}}</span></td>
+                </tr>
+                <tr>
+                    <th>Maintainer</th>
+                    <td>{{data.results[0].Maintainer}}</td>
+                </tr>
+                <tr>
+                    <th>Number of Votes</th>
+                    <td>{{data.results[0].NumVotes}}</td>
+                </tr>
+                <tr>
+                    <th>Last Modified</th>
+                    <td>{{data.results[0].LastModified}}</td>
+                </tr>
+                <tr>
+                    <th>Out of Date</th>
+                    <td>{{data.results[0].OutOfDate}}</td>
+                </tr>
             </tbody>
         </table>
     </div>
+      <div class="col-container">
+          <div class="column">
+              <h2>Dependencies</h2>
+              <ul>
+                  <li v-for="(value, index) in data.results[0].Depends" :key="index">{{ value }}</li>
+              </ul>
+          </div>
+
+          <div class="column">
+              <h2>Make Dependencies</h2>
+              <ul>
+                  <li v-for="(value, index) in data.results[0].MakeDepends" :key="index">{{ value }}</li>
+              </ul>
+          </div>
+      </div>
   </div>
 </template>
 
@@ -103,9 +138,10 @@ table {
 
 th,
 td {
-    border: 1px solid #673ab888;
+    border: 2px solid #673ab888;
     padding: 10px;
     text-align: left;
+
 }
 @media (prefers-color-scheme: dark) {
     th {
@@ -123,31 +159,32 @@ td {
     width:50%;
     justify-content: center;
     align-items: center;
-
-    .table-container {
-        position: relative;
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
 }
+/* dependency boxes*/
 
 .col-container {
-  margin-top: 30px;
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 10px;
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px;
 
 }
 
 .column {
-  background-color: #010101;
-  padding: 10px 10px;
-  flex-basis: 33.33%;
-  padding: 20px;
-  border-radius: 10px;
-  border: 1px solid #673ab888;
-  box-shadow: 0 25px 50px -12px #673ab888;
+    background-color: #010101;
+    flex-basis: 33.33%;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid var(--color-primary-shadow);
+    box-shadow: 0 25px 50px -12px var(--color-primary-shadow);
+}
+
+h2 {
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+ul{
+    padding-left:20px;
 }
 </style>
