@@ -44,18 +44,23 @@
 </template>
 
 <script setup lang="ts">
-import {ref} from "vue";
+import {ref, onMounted} from "vue";
 
 import axios from "axios";
 import ColorPicker from "@/components/ColorPicker.vue";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import { faGear } from '@fortawesome/free-solid-svg-icons/faGear'
+import { useRoute, useRouter } from 'vue-router';
+
 const data = ref<Result[]>([]);
 
 const query = ref("");
 const isLoading = ref(false);
 const hasLoaded = ref(false);
 const isFocusing = ref(false);
+
+const route = useRoute();
+const router = useRouter();
 
 interface Result {
   source: string;
@@ -80,6 +85,7 @@ function fetchData() {
         .finally(() => {
             isLoading.value = false;
             hasLoaded.value = true;
+            router.push({ name: 'home', query: { q: query.value } });
         });
 }
 
@@ -100,6 +106,13 @@ const openModal = () => {
 const closeModal = () => {
   isModalOpened.value = false;
 };
+
+onMounted(() => {
+    if (route.query.q) {
+        query.value = route.query.q as string;
+        fetchData();
+    }
+});
 
 </script>
 
