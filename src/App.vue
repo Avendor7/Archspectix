@@ -8,9 +8,9 @@ import { RouterLink, RouterView } from 'vue-router'
             <RouterLink to="/">Home</RouterLink>
             <RouterLink to="/about">About</RouterLink>
             <a href="https://archlinux.org" class="split">Arch Linux</a>
-            <a href="https://archlinux.org" class="split">Arch Wiki</a>
-            <a href="https://archlinux.org" class="split">Arch Repository</a>
-            <a href="https://archlinux.org" class="split">Arch User Repository</a>
+            <a href="https://wiki.archlinux.org/title/Main_page" class="split">Arch Wiki</a>
+            <a href="https://archlinux.org/packages/" class="split">Arch Package Search</a>
+            <a href="https://aur.archlinux.org/packages" class="split">Arch User Repository</a>
         </nav>
     </header>
     <RouterView />
