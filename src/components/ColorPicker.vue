@@ -99,11 +99,13 @@ getPrimary();
 .pickerInput {
     width: 25%;
     height: 30px;
-    border: solid 1px #ccc;
+    border: solid 0px #ccc;
     box-shadow: var(--color-primary-shadow);
     background-color: #fff;
     text-align: center;
     margin: 0.5rem auto;
+    cursor: pointer;
+
 }
 
 label {
@@ -134,8 +136,16 @@ button {
     border: 1px solid var(--color-primary);
     box-shadow: 0 20px 20px -20px var(--color-primary-shadow);
     padding: 10px;
-    margin: 0;
+    margin-top: 10px;
     outline: none;
     color: var(--color-primary);
+    cursor: pointer;
+    border-radius: 5px;
+}
+button:hover{
+    background: var(--color-primary-shadow);
+}
+.preset{
+    cursor: pointer;
 }
 </style>
