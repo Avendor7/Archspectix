@@ -34,11 +34,11 @@
                 </tr>
                 <tr>
                     <th>Last Modified</th>
-                    <td>{{data.results[0].LastModified}}</td>
+                    <td>{{ formatDate(data.results[0].LastModified) }}</td>
                 </tr>
                 <tr>
                     <th>Out of Date</th>
-                    <td>{{data.results[0].OutOfDate}}</td>
+                    <td>{{ formatDate(data.results[0].OutOfDate) }}</td>
                 </tr>
             </tbody>
         </table>
@@ -79,13 +79,13 @@ interface AURPackage {
     FirstSubmitted: number;
     ID: number;
     Keywords: string[];
-    LastModified: number;
+    LastModified: Date;
     License: string[];
     Maintainer: string;
     MakeDepends: string[];
     Name: string;
     NumVotes: number;
-    OutOfDate: number;
+    OutOfDate: Date;
     PackageBase: string;
     PackageBaseID: number;
     Popularity: number;
@@ -121,6 +121,17 @@ function fetchData() {
             isLoading.value = false;
         });
 }
+
+function formatDate(timestamp: Date) {
+    return timestamp ? new Date(timestamp).toLocaleString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+    }) :"";
+}
+
 onBeforeMount(() => {
     fetchData();
 });
