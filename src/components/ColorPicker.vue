@@ -79,6 +79,7 @@ getPrimary();
     height: auto;
     width: 250px;
     margin: auto;
+    margin-top: 200px;
     padding: 1rem;
     border: solid 1px var(--color-primary);
     box-shadow: var(--color-primary-shadow);
