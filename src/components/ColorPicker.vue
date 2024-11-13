@@ -10,7 +10,7 @@
         </div>
         <ul>
             <li v-for="color in presetColors" :key="color.primary">
-                <div class="preset" @click="setPrimary(color.primary)" :style="{backgroundColor:`${color.primary}`}">
+                <div class="preset" @click="setPrimary(color.primary)" :style="{backgroundColor:`${color.primary}`,textAlign: 'center'}">
                     <span :style="{color: calculateBrightness(`${color.primary}`)}">{{color.primary}}</span>
                 </div>
             </li>
