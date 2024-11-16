@@ -72,7 +72,7 @@ interface Result {
 
 function fetchData() {
     isLoading.value = true;
-    let url = "http://localhost:3001/search?value=" + query.value;
+    let url = "http://localhost:3031/search?value=" + query.value;
     console.log(url);
     axios
         .get(url)
