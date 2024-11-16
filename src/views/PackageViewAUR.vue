@@ -108,7 +108,7 @@ const query = String(route.params.query); // You can also use a type guard for b
 
 function fetchData() {
     isLoading.value = true;
-    let url = "http://localhost:3031/aur/info?value=" + query;
+    let url = import.meta.env.VITE_API_URL+"/aur/info?value=" + query;
     axios
         .get(url)
         .then((response) => {
