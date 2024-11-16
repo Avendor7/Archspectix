@@ -4,7 +4,7 @@ FROM node:23 AS builder
 WORKDIR /app
 
 COPY package.json package-lock.json ./
-RUN npm install
+RUN npm install --only=production
 
 COPY . .
 RUN npm run build
