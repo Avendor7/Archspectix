@@ -156,6 +156,7 @@ function normalizeResults(alrData, aurData) {
         allResults.push({
             name: result.pkgname,
             version: result.pkgver,
+            repo: result.repo,
             source: "ALR",
             description: result.description,
             last_updated_date: result.last_update,
@@ -166,6 +167,7 @@ function normalizeResults(alrData, aurData) {
         allResults.push({
             name: result.Name,
             version: result.Version,
+            repo: "",
             source: "AUR",
             description: result.Description,
             last_updated_date: convertEpochToISO8601(result.LastModified),

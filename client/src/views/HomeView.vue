@@ -14,6 +14,7 @@
                         <th>Source</th>
                         <th>Name</th>
                         <th>Version</th>
+                        <th>Repository</th>
                         <th>Last Updated Date</th>
                         <th>Flagged Date</th>
                     </tr>
@@ -32,6 +33,7 @@
                             </RouterLink>
                         </td>
                         <td>{{ result.version }}</td>
+                        <td>{{ result.repo }}</td>
                         <td>{{ formatDate(result.last_updated_date) }}</td>
                         <td>{{ formatDate(result.flagged_date) }}</td>
                     </tr>
@@ -66,6 +68,7 @@ interface Result {
   source: string;
   name: string;
   version: string;
+  repo: string;
   last_updated_date: Date;
   flagged_date: Date;
 }
